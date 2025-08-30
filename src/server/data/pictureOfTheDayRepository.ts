@@ -29,3 +29,13 @@ export async function saveDto(dto: PictureOfTheDayWriteDto) {
   await prisma.picture.create({ data: dto });
   await prisma.$disconnect();
 }
+
+export async function getUrlForDate(date: string) {
+  const prisma = new PrismaClient;
+  const picture = await prisma.picture.findUniqueOrThrow({
+    where: {
+      date: date
+    }
+  })
+  return picture.url;
+}
