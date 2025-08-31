@@ -10,8 +10,8 @@ export async function GET(req: Request) {
   }
 
   try {
-    const url = pictureUrlQuery(date)
-    return NextResponse.json(url, { status: 200 })
+    const url = await pictureUrlQuery(date)
+    return NextResponse.json({ url }, { status: 200 })
   } catch {
     return NextResponse.json({ error: "Failed to fetch url from database" }, { status: 404 })
   }

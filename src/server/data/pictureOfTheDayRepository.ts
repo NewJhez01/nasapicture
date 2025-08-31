@@ -37,5 +37,6 @@ export async function getUrlForDate(date: string) {
       date: date
     }
   })
+  console.log({ picture })
   return picture.url;
 }
