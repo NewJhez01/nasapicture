@@ -17,7 +17,7 @@ datasource db {
 model Picture {
   id          Int    @id @default(autoincrement())
   copyright   String
-  date        String
+  date        String @unique
   explanation String
   hdUrl       String
   title       String

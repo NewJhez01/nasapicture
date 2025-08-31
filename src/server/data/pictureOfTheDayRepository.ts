@@ -2,7 +2,7 @@ import { PrismaClient } from "@/generated/prisma";
 import { PictureOfTheDayWriteDto } from "../core/factory/pictureOfTheDayWriteDto";
 
 export interface NasaPictureOfTheDayResponse {
-  copyright: string;
+  copyright: string | undefined;
   date: string;
   explanation: string;
   hdurl: string;
@@ -28,4 +28,14 @@ export async function saveDto(dto: PictureOfTheDayWriteDto) {
   const prisma = new PrismaClient;
   await prisma.picture.create({ data: dto });
   await prisma.$disconnect();
+}
+
+export async function getUrlForDate(date: string) {
+  const prisma = new PrismaClient;
+  const picture = await prisma.picture.findUniqueOrThrow({
+    where: {
+      date: date
+    }
+  })
+  return picture.url;
 }
