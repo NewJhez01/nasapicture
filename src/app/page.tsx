@@ -5,20 +5,25 @@ import { Button } from "./components/button";
 import { Headline } from "./components/headline";
 import { Subline } from "./components/subline";
 import { useState } from "react";
-import { useFetchPictureForDate } from "./hooks/useFetchPictureForData";
+import { useFetchPictureMutation } from "./hooks/useFetchPictureMutation";
 
 export default function Home() {
   const currenDate = new Date()
   const [date, setDate] = useState(currenDate)
+  const pictureMutation = useFetchPictureMutation()
   function handleDatePickerChange(date: Date | null) {
     if (date != null) {
       setDate(date);
     }
   }
 
-  function onSubmit() {
-    const url = useFetchPictureForDate(date)
-    window.location.href = url;
+  async function onSubmit(date: Date) {
+    const data = await pictureMutation.mutateAsync(date);
+
+    if (!data || !data.url) {
+      throw new Error("query returned undefined url");
+    }
+    window.location.href = data?.url;
   }
 
   return (
@@ -34,7 +39,7 @@ export default function Home() {
         />
         <Button
           children={<span>submit</span>}
-          onClick={onSubmit}
+          onClick={() => onSubmit(date)}
         />
       </div>
     </div>
