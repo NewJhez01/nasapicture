@@ -2,7 +2,7 @@ import { PrismaClient } from "@/generated/prisma";
 import { PictureOfTheDayWriteDto } from "../core/factory/pictureOfTheDayWriteDto";
 
 export interface NasaPictureOfTheDayResponse {
-  copyright: string;
+  copyright: string | undefined;
   date: string;
   explanation: string;
   hdurl: string;
@@ -37,6 +37,5 @@ export async function getUrlForDate(date: string) {
       date: date
     }
   })
-  console.log({ picture })
   return picture.url;
 }

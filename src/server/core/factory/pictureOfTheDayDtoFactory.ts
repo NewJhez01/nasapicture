@@ -12,7 +12,7 @@ export interface PictureOfTheDayReadDto {
 export function createFromResponse(response: NasaPictureOfTheDayResponse): PictureOfTheDayReadDto {
 
   return {
-    copyright: response.copyright,
+    copyright: response.copyright || "no copyright",
     date: response.date,
     explanation: response.explanation,
     hdUrl: response.hdurl,
