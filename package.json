@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build --turbopack",
+    "build": "prisma generate && prisma migrate deploy && next build --turbopack",
     "start": "next start",
     "lint": "biome check",
+    "postinstall": "prisma generate",
     "format": "biome format --write"
   },
   "dependencies": {
