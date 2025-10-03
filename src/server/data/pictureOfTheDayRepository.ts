@@ -1,4 +1,4 @@
-import { PrismaClient } from "@/generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { PictureOfTheDayWriteDto } from "../core/factory/pictureOfTheDayWriteDto";
 
 export interface NasaPictureOfTheDayResponse {
