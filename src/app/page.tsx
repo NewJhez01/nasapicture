@@ -17,7 +17,6 @@ export default function Home() {
     }
   }
 
-  console.log("DB URL", process.env.DATABASE_URL);
   async function onSubmit(date: Date) {
     const data = await pictureMutation.mutateAsync(date);
 

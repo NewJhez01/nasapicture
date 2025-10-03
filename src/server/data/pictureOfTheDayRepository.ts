@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../../prisma/lib";
 import { PictureOfTheDayWriteDto } from "../core/factory/pictureOfTheDayWriteDto";
 
 export interface NasaPictureOfTheDayResponse {
@@ -25,17 +25,11 @@ export async function getPictureOfTheDay() {
 }
 
 export async function saveDto(dto: PictureOfTheDayWriteDto) {
-  const prisma = new PrismaClient;
   await prisma.picture.create({ data: dto });
   await prisma.$disconnect();
 }
 
 export async function getUrlForDate(date: string) {
-  console.log("reached data domain connecting to prisma......")
-  const prisma = new PrismaClient;
-  console.log({ prisma })
-  const result = await prisma.picture.findMany();
-  console.log("All rows:", result);
   const picture = await prisma.picture.findUniqueOrThrow({
     where: {
       date: date
