@@ -8,6 +8,7 @@ export function useFetchPictureMutation() {
   return useMutation<UrlResponse, Error, Date>({
     mutationFn: async (date: Date) => {
       const res = await fetch(`/api/url-for-picture?date=${date.toISOString().split("T")[0]}`);
+      console.log({ res })
       if (res.ok === false) {
         throw new Error("failed to fetch url");
       }

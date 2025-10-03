@@ -31,7 +31,11 @@ export async function saveDto(dto: PictureOfTheDayWriteDto) {
 }
 
 export async function getUrlForDate(date: string) {
+  console.log("reached data domain connecting to prisma......")
   const prisma = new PrismaClient;
+  console.log({ prisma })
+  const result = await prisma.picture.findMany();
+  console.log("All rows:", result);
   const picture = await prisma.picture.findUniqueOrThrow({
     where: {
       date: date
