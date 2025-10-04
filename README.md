@@ -1,5 +1,9 @@
 # NASA Picture of the Day Viewer
 
+# > [!WARNING]
+
+> The Nasa API has been discontinued meaning this website no longer works. Thank the lack of funding from the US Government. I apologize sincerely.
+
 A modern web application that allows users to explore NASA's Astronomy Picture of the Day (APOD) from any date. Built with Next.js 15 and featuring a clean, responsive interface for discovering the cosmos through NASA's daily featured images.
 
 ## Features
@@ -221,4 +225,3 @@ This application uses NASA's Astronomy Picture of the Day API. Each day a differ
 ---
 
 **Note**: This application requires an active internet connection to fetch images from NASA's servers and a properly configured PostgreSQL database for metadata storage.
-
